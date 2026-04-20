@@ -117,27 +117,6 @@ function App() {
           </ul>
         </nav>
 
-        <div className="summary-container">
-          <div className="summary-card">
-            <h4>Total Stocks</h4>
-            <p>{totalStocks}</p>
-          </div>
-
-          <div className="summary-card">
-            <h4>Average Price</h4>
-            <p>${averagePrice}</p>
-          </div>
-
-          <div className="summary-card">
-            <h4>Highest Price</h4>
-            <p>${highestPrice}</p>
-          </div>
-
-          <div className="summary-card">
-            <h4>Lowest Price</h4>
-            <p>${lowestPrice}</p>
-          </div>
-        </div>
       </aside>
 
       <main className="dashboard">
