@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import TickerInfo from './Components/TickerInfo'
+import { Outlet, Link, useLocation } from 'react-router-dom'
 import './App.css'
 
 const API_KEY = import.meta.env.VITE_APP_FINNHUB_API_KEY
@@ -11,6 +11,9 @@ function App() {
   const [priceFilter, setPriceFilter] = useState('All')
   const [minPrice, setMinPrice] = useState('')
   const [maxPrice, setMaxPrice] = useState('')
+
+  const location = useLocation()
+  const isDashboard = location.pathname === '/'
 
   const stocks = [
     { name: 'Joby Aviation', symbol: 'JOBY' },
@@ -73,7 +76,13 @@ function App() {
     const matchesMaxPrice =
       maxPrice === '' || stock.price <= Number(maxPrice)
 
-    return matchesSearch && matchesDirection && matchesPrice && matchesMinPrice && matchesMaxPrice
+    return (
+      matchesSearch &&
+      matchesDirection &&
+      matchesPrice &&
+      matchesMinPrice &&
+      matchesMaxPrice
+    )
   })
 
   const totalStocks = filteredList.length
@@ -81,7 +90,8 @@ function App() {
   const averagePrice =
     filteredList.length > 0
       ? (
-          filteredList.reduce((sum, stock) => sum + stock.price, 0) / filteredList.length
+          filteredList.reduce((sum, stock) => sum + stock.price, 0) /
+          filteredList.length
         ).toFixed(2)
       : 0
 
@@ -97,54 +107,15 @@ function App() {
 
   return (
     <div className="whole-page">
-      <div className="dashboard">
-        <h1>Stock Dashboard</h1>
-        <h3>10 Stock Tickers</h3>
-
-        <div className="controls">
-          <input
-            type="text"
-            placeholder="Search by stock name or ticker..."
-            value={searchInput}
-            onChange={(e) => setSearchInput(e.target.value)}
-            className="search-bar"
-          />
-
-          <select
-            value={directionFilter}
-            onChange={(e) => setDirectionFilter(e.target.value)}
-            className="filter-dropdown"
-          >
-            <option value="All">All Stocks</option>
-            <option value="Up">Up</option>
-            <option value="Down">Down</option>
-          </select>
-
-          <select
-            value={priceFilter}
-            onChange={(e) => setPriceFilter(e.target.value)}
-            className="filter-dropdown"
-          >
-            <option value="All">All Prices</option>
-            <option value="Above 10">Above $10</option>
-            <option value="10 or Below">$10 or Below</option>
-          </select>
-
-          <input
-            type="number"
-            placeholder="Min price"
-            value={minPrice}
-            onChange={(e) => setMinPrice(e.target.value)}
-          />
-
-          <input
-            type="number"
-            placeholder="Max price"
-            value={maxPrice}
-            onChange={(e) => setMaxPrice(e.target.value)}
-          />
-          
-        </div>
+      <aside className="sidebar">
+        <h2>Stock Dashboard</h2>
+        <nav>
+          <ul className="sidebar-links">
+            <li>
+              <Link to="/">Dashboard</Link>
+            </li>
+          </ul>
+        </nav>
 
         <div className="summary-container">
           <div className="summary-card">
@@ -158,26 +129,91 @@ function App() {
           </div>
 
           <div className="summary-card">
+            <h4>Highest Price</h4>
+            <p>${highestPrice}</p>
+          </div>
+
+          <div className="summary-card">
             <h4>Lowest Price</h4>
             <p>${lowestPrice}</p>
           </div>
         </div>
+      </aside>
 
-        <ul>
-          {filteredList.map((stock) => (
-            <TickerInfo
-              key={stock.symbol}
-              name={stock.name}
-              symbol={stock.symbol}
-              price={stock.price}
-              high={stock.high}
-              low={stock.low}
-              open={stock.open}
-              previousClose={stock.previousClose}
+      <main className="dashboard">
+        {isDashboard ? (
+          <>
+            <h1>Stock Dashboard</h1>
+            <h3>10 Stock Tickers</h3>
+
+            <div className="controls">
+              <input
+                type="text"
+                placeholder="Search by stock name or ticker..."
+                value={searchInput}
+                onChange={(e) => setSearchInput(e.target.value)}
+                className="search-bar"
+              />
+
+              <select
+                value={directionFilter}
+                onChange={(e) => setDirectionFilter(e.target.value)}
+                className="filter-dropdown"
+              >
+                <option value="All">All Stocks</option>
+                <option value="Up">Up</option>
+                <option value="Down">Down</option>
+              </select>
+
+              <select
+                value={priceFilter}
+                onChange={(e) => setPriceFilter(e.target.value)}
+                className="filter-dropdown"
+              >
+                <option value="All">All Prices</option>
+                <option value="Above 10">Above $10</option>
+                <option value="10 or Below">$10 or Below</option>
+              </select>
+
+              <input
+                type="number"
+                placeholder="Min price"
+                value={minPrice}
+                onChange={(e) => setMinPrice(e.target.value)}
+              />
+
+              <input
+                type="number"
+                placeholder="Max price"
+                value={maxPrice}
+                onChange={(e) => setMaxPrice(e.target.value)}
+              />
+            </div>
+
+            <Outlet
+              context={{
+                list,
+                filteredList,
+                totalStocks,
+                averagePrice,
+                highestPrice,
+                lowestPrice
+              }}
             />
-          ))}
-        </ul>
-      </div>
+          </>
+        ) : (
+          <Outlet
+            context={{
+              list,
+              filteredList,
+              totalStocks,
+              averagePrice,
+              highestPrice,
+              lowestPrice
+            }}
+          />
+        )}
+      </main>
     </div>
   )
 }
