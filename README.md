@@ -1,54 +1,48 @@
-# Web Development Project 5 - *Stock Dashboard*
+# Web Development Project 6 - *Stock Dashboard - Part 2*
 
 Submitted by: **Glenn Fortunato**
 
-This web app: **Displays a dashboard of stocks, including name, ticker symbol, price, close/open prices, and a red or green color based on whether the stock is up or down for the day.  The application uses Finnhub's API to fetch stock information, as current as the previous day's closing prices.**
+This web app: **Displays a dashboard of stocks, including name, ticker symbol, price, close/open prices, and a red or green color based on whether the stock is up or down for the day.  The application uses Finnhub's API to fetch stock information, as current as the previous day's closing prices. After the update, the app now provides a detailed page for each stock, along with an updated dashboard/sidebar.**
 
-Time spent: **3.5** hours spent in total
-
-## Required Features
+Time spent: **2** hours spent in total
 
 The following **required** functionality is completed:
 
-- [x] **The site has a dashboard displaying a list of data fetched using an API call**
-  - The dashboard should display at least 10 unique items, one per row
-  - The dashboard includes at least two features in each row
-- [x] **`useEffect` React hook and `async`/`await` are used**
-- [x] **The app dashboard includes at least three summary statistics about the data** 
-  - The app dashboard includes at least three summary statistics about the data, such as:
-    - *Total Stocks, Average Price, and Lowest Price of stocks currently displayed.*
-- [x] **A search bar allows the user to search for an item in the fetched data**
-  - The search bar **correctly** filters items in the list, only displaying items matching the search query
-  - The list of results dynamically updates as the user types into the search bar
-- [x] **An additional filter allows the user to restrict displayed items by specified categories**
-  - The filter restricts items in the list using a **different attribute** than the search bar 
-  - The filter **correctly** filters items in the list, only displaying items matching the filter attribute in the dashboard
-  - The dashboard list dynamically updates as the user adjusts the filter
+- [x] **Clicking on an item in the list view displays more details about it**
+  - Clicking on an item in the dashboard list navigates to a detail view for that item
+  - Detail view includes extra information about the item not included in the dashboard view
+  - The same sidebar is displayed in detail view as in dashboard view
+  - *To ensure an accurate grade, your sidebar **must** be viewable when showing the details view in your recording.*
+- [x] **Each detail view of an item has a direct, unique URL link to that item’s detail view page**
+  -  *To ensure an accurate grade, the URL/address bar of your web browser **must** be viewable in your recording.*
+- [x] **The app includes at least two unique charts developed using the fetched data that tell an interesting story**
+  - At least two charts should be incorporated into the dashboard view of the site
+  - Each chart should describe a different aspect of the dataset
+
 
 The following **optional** features are implemented:
 
-- [x] Multiple filters can be applied simultaneously
-- [x] Filters use different input types
-  - e.g., as a text input, a dropdown or radio selection, and/or a slider
-- [x] The user can enter specific bounds for filter values
+- [x] The site’s customized dashboard contains more content that explains what is interesting about the data 
+  - e.g., an additional description, graph annotation, suggestion for which filters to use, or an additional page that explains more about the data
+- [ ] The site allows users to toggle between different data visualizations
+  - User should be able to use some mechanism to toggle between displaying and hiding visualizations 
 
+  
 The following **additional** features are implemented:
 
-* [x] List anything else that you added to improve the site's functionality!
-    Added dynamic colors to the price of each stock, so that they appear green if the current price is greater than or equal to the previous closing price, or red if it is less than it.
-1
+* [ ] List anything else that you added to improve the site's functionality!
+
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
 
-<img src='Proj5_GFortunato.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='Proj6_GFortunato.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
-<!-- Replace this with whatever GIF tool you used! -->
-GIF created with LICECap
+GIF created with LICEcap
 
 ## Notes
 
-I initially tried to use a different API for stock data called MarketStack.  It mentioned 100 API calls per month free, however I soon realized that each API call was per Ticker symbol.  So when working on my app, I ended up using 60 of my API calls before finishing the required features, since I was working with 10 ticker symbols at a time.  I also struggled with pulling specific stocks using Finnhub's API, and ended up hard-coding the names/tickers of the 10 I wanted to display, and instead opted to fetch information regarding these using the API key.
+While creating this app, a feature that was difficult to add was the sidebar.  Originally, the sidebar was at the top of the screen, and when trying to have it vertically on the side, it would move the whole stocks page over by the same amount.  I was comfortable overall working with the APIs, and using the charts, however I do need to focus on my CSS.
 
 ## License
 
