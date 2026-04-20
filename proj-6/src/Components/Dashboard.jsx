@@ -1,5 +1,7 @@
 import { useOutletContext } from 'react-router-dom'
 import TickerInfo from './TickerInfo.jsx'
+import PriceChart from './PriceChart.jsx'
+import ChangeChart from './ChangeChart.jsx'
 
 function Dashboard() {
   const {
@@ -34,7 +36,12 @@ function Dashboard() {
         </div>
       </div>
 
-      <ul>
+      <div className="charts-row">
+        <PriceChart stocks={filteredList} />
+        <ChangeChart stocks={filteredList} />
+      </div>
+
+      <ul className="stock-list">
         {filteredList.map((stock) => (
           <TickerInfo
             key={stock.symbol}

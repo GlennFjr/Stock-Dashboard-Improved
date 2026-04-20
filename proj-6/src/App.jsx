@@ -70,11 +70,8 @@ function App() {
       (priceFilter === 'Above 10' && stock.price > 10) ||
       (priceFilter === '10 or Below' && stock.price <= 10)
 
-    const matchesMinPrice =
-      minPrice === '' || stock.price >= Number(minPrice)
-
-    const matchesMaxPrice =
-      maxPrice === '' || stock.price <= Number(maxPrice)
+    const matchesMinPrice = minPrice === '' || stock.price >= Number(minPrice)
+    const matchesMaxPrice = maxPrice === '' || stock.price <= Number(maxPrice)
 
     return (
       matchesSearch &&
@@ -108,19 +105,25 @@ function App() {
   return (
     <div className="whole-page">
       <aside className="sidebar">
-        <h2>Stock Dashboard</h2>
+        <h2>Stock Dashboard Sidebar</h2>
+
         <nav>
           <ul className="sidebar-links">
             <li>
               <Link to="/">Dashboard</Link>
             </li>
+            <li>
+              <Link to="/market-summary">Market Summary</Link>
+            </li>
+            <li>
+              <Link to="/about">About</Link>
+            </li>
           </ul>
         </nav>
-
       </aside>
 
       <main className="dashboard">
-        {isDashboard ? (
+        {isDashboard && (
           <>
             <h1>Stock Dashboard</h1>
             <h3>10 Stock Tickers</h3>
@@ -168,30 +171,19 @@ function App() {
                 onChange={(e) => setMaxPrice(e.target.value)}
               />
             </div>
-
-            <Outlet
-              context={{
-                list,
-                filteredList,
-                totalStocks,
-                averagePrice,
-                highestPrice,
-                lowestPrice
-              }}
-            />
           </>
-        ) : (
-          <Outlet
-            context={{
-              list,
-              filteredList,
-              totalStocks,
-              averagePrice,
-              highestPrice,
-              lowestPrice
-            }}
-          />
         )}
+
+        <Outlet
+          context={{
+            list,
+            filteredList,
+            totalStocks,
+            averagePrice,
+            highestPrice,
+            lowestPrice
+          }}
+        />
       </main>
     </div>
   )
