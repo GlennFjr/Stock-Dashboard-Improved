@@ -1,42 +1,42 @@
-# Stock Dashboard
+# Stock Analytics Dashboard
 
-Stock Dashboard is a React application that displays market data for a selected group of stocks using the Finnhub API.
+Stock Analytics Dashboard is a React application that displays market data for a selected group of stocks using the Finnhub API.
 
-The dashboard shows stock names, ticker symbols, current prices, opening and previous closing prices, along with visual indicators showing whether a stock is up or down.
+The project expands on a basic stock dashboard by adding dedicated detail pages for individual stocks, unique routes, a persistent sidebar, and data visualizations that help users interpret stock information.
 
 ## Features
 
-- Display data for multiple stocks
-- Show ticker symbol, price, open, and previous close
-- Color-code stock prices based on daily performance
-- Search stocks by name or ticker
-- Filter displayed stocks by price range
-- Apply multiple filters at the same time
-- View summary statistics for the current dataset
-- Dynamically update results as filters change
+- Display stock name, ticker symbol, price, opening price, and previous closing price
+- Color-code stock prices based on whether they are up or down
+- Search and filter stocks from the dashboard
+- View summary statistics for the displayed stocks
+- Navigate to a dedicated detail page for each stock
+- Use unique URLs for individual stock pages
+- Maintain the same sidebar across dashboard and detail views
+- Display multiple charts based on fetched stock data
+- Provide additional stock information on detail pages
 
-## Dashboard Statistics
+## Stock Detail Pages
 
-The application calculates summary information for the displayed stocks, including:
+Each stock in the dashboard links to its own detail page.
 
-- Total number of stocks
-- Average stock price
-- Lowest stock price
+The detail view displays additional information that is not shown in the main dashboard and uses a unique URL for each stock.
+
+This structure allows users to navigate directly to a specific stock while keeping the same overall application layout.
+
+## Data Visualizations
+
+The dashboard includes multiple charts created from the fetched stock data.
+
+These visualizations are used to compare different aspects of the displayed stocks and provide a clearer view of the overall dataset.
 
 ## How It Works
 
 Stock data is fetched from the Finnhub API using asynchronous requests.
 
-The application uses React's `useEffect` hook to retrieve stock information when the dashboard loads, while `async` and `await` are used to handle the API requests.
+React state is used to manage the fetched data, while routing is used to create separate pages for individual stocks.
 
-A predefined list of ticker symbols is used to request quote data for each stock.
-
-Users can search and filter the displayed results without making additional API requests. The dashboard updates dynamically based on the current search query and selected filters.
-
-Stock prices are also displayed with dynamic styling:
-
-- Green when the current price is greater than or equal to the previous closing price
-- Red when the current price is lower than the previous closing price
+The dashboard provides a summary view of the stock data, while each detail page provides additional information for a selected stock.
 
 ## Tech Stack
 
@@ -44,21 +44,24 @@ Stock prices are also displayed with dynamic styling:
 - JavaScript
 - CSS
 - Finnhub API
-- React Hooks (`useState`, `useEffect`)
+- React Router
+- React Hooks
+- Data Visualization Library
 
 ## Demo
 
-![Stock Dashboard Demo](Proj5_GFortunato.gif)
+![Stock Analytics Dashboard Demo](Proj6_GFortunato.gif)
 
 ## What I Learned
 
-This project gave me more experience working with external APIs and asynchronous data fetching in React.
+This project gave me more experience building multi-page React applications and presenting API data in different ways.
 
 I also practiced:
 
-- Using `useEffect` for API requests
-- Working with `async` and `await`
-- Managing API response data in React state
-- Creating dynamic search and filtering behavior
-- Calculating summary statistics from fetched data
-- Applying conditional styling based on data values
+- Creating dynamic routes for individual data records
+- Building detail pages from API data
+- Maintaining shared layout components across routes
+- Creating charts from fetched data
+- Structuring dashboards with reusable components
+- Improving application layout and sidebar design
+- Working with asynchronous API requests
