@@ -1,61 +1,64 @@
-# Web Development Project 6 - *Stock Dashboard - Part 2*
+# Stock Dashboard
 
-Submitted by: **Glenn Fortunato**
+Stock Dashboard is a React application that displays market data for a selected group of stocks using the Finnhub API.
 
-This web app: **Displays a dashboard of stocks, including name, ticker symbol, price, close/open prices, and a red or green color based on whether the stock is up or down for the day.  The application uses Finnhub's API to fetch stock information, as current as the previous day's closing prices. After the update, the app now provides a detailed page for each stock, along with an updated dashboard/sidebar.**
+The dashboard shows stock names, ticker symbols, current prices, opening and previous closing prices, along with visual indicators showing whether a stock is up or down.
 
-Time spent: **2** hours spent in total
+## Features
 
-The following **required** functionality is completed:
+- Display data for multiple stocks
+- Show ticker symbol, price, open, and previous close
+- Color-code stock prices based on daily performance
+- Search stocks by name or ticker
+- Filter displayed stocks by price range
+- Apply multiple filters at the same time
+- View summary statistics for the current dataset
+- Dynamically update results as filters change
 
-- [x] **Clicking on an item in the list view displays more details about it**
-  - Clicking on an item in the dashboard list navigates to a detail view for that item
-  - Detail view includes extra information about the item not included in the dashboard view
-  - The same sidebar is displayed in detail view as in dashboard view
-  - *To ensure an accurate grade, your sidebar **must** be viewable when showing the details view in your recording.*
-- [x] **Each detail view of an item has a direct, unique URL link to that item’s detail view page**
-  -  *To ensure an accurate grade, the URL/address bar of your web browser **must** be viewable in your recording.*
-- [x] **The app includes at least two unique charts developed using the fetched data that tell an interesting story**
-  - At least two charts should be incorporated into the dashboard view of the site
-  - Each chart should describe a different aspect of the dataset
+## Dashboard Statistics
 
+The application calculates summary information for the displayed stocks, including:
 
-The following **optional** features are implemented:
+- Total number of stocks
+- Average stock price
+- Lowest stock price
 
-- [x] The site’s customized dashboard contains more content that explains what is interesting about the data 
-  - e.g., an additional description, graph annotation, suggestion for which filters to use, or an additional page that explains more about the data
-- [ ] The site allows users to toggle between different data visualizations
-  - User should be able to use some mechanism to toggle between displaying and hiding visualizations 
+## How It Works
 
-  
-The following **additional** features are implemented:
+Stock data is fetched from the Finnhub API using asynchronous requests.
 
-* [ ] List anything else that you added to improve the site's functionality!
+The application uses React's `useEffect` hook to retrieve stock information when the dashboard loads, while `async` and `await` are used to handle the API requests.
 
-## Video Walkthrough
+A predefined list of ticker symbols is used to request quote data for each stock.
 
-Here's a walkthrough of implemented user stories:
+Users can search and filter the displayed results without making additional API requests. The dashboard updates dynamically based on the current search query and selected filters.
 
-<img src='Proj6_GFortunato.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+Stock prices are also displayed with dynamic styling:
 
-GIF created with LICEcap
+- Green when the current price is greater than or equal to the previous closing price
+- Red when the current price is lower than the previous closing price
 
-## Notes
+## Tech Stack
 
-While creating this app, a feature that was difficult to add was the sidebar.  Originally, the sidebar was at the top of the screen, and when trying to have it vertically on the side, it would move the whole stocks page over by the same amount.  I was comfortable overall working with the APIs, and using the charts, however I do need to focus on my CSS.
+- React
+- JavaScript
+- CSS
+- Finnhub API
+- React Hooks (`useState`, `useEffect`)
 
-## License
+## Demo
 
-    Copyright [2026] [Glenn Fortunato]
+![Stock Dashboard Demo](Proj5_GFortunato.gif)
 
-    Licensed under the Apache License, Version 2.0 (the "License");
-    you may not use this file except in compliance with the License.
-    You may obtain a copy of the License at
+## What I Learned
 
-        http://www.apache.org/licenses/LICENSE-2.0
+This project gave me more experience working with external APIs and asynchronous data fetching in React.
 
-    Unless required by applicable law or agreed to in writing, software
-    distributed under the License is distributed on an "AS IS" BASIS,
-    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-    See the License for the specific language governing permissions and
-    limitations under the License.
+I also practiced:
+
+- Using `useEffect` for API requests
+- Working with `async` and `await`
+- Managing API response data in React state
+- Creating dynamic search and filtering behavior
+- Calculating summary statistics from fetched data
+- Applying conditional styling based on data values
